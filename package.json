@@ -1,0 +1,15 @@
+{
+  "name": "json-patcher",
+  "version": "1.0.0",
+  "description": "2 modes.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jsonpath": "^1.1.1"
+  }
+}
