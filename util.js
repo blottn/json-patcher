@@ -3,7 +3,7 @@ export const comparable = (a, b) => {
     return false;
   if (Array.isArray(a) != Array.isArray(b))
     return false;
-  return typeof a === typeof b;
+  return a instanceof Object;
 }
 
 
