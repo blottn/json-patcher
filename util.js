@@ -1,6 +1,9 @@
-export const mergeable = (a,b) => {
-  if (!(a instanceof Object))
+export const comparable = (a, b) => {
+  if ((a instanceof Object) != (b instanceof Object))
     return false;
-  if (!(b instanceof Object))
+  if (Array.isArray(a) != Array.isArray(b))
     return false;
+  return typeof a === typeof b;
 }
+
+
