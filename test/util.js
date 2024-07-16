@@ -1,6 +1,6 @@
 import assert from 'assert';
 
-import { shouldSet } from '../util.js';
+import { shouldSet, getAt, setAt } from '../util.js';
 
 const num_A = 123;
 const num_B = 456;
@@ -28,5 +28,34 @@ describe('utils.shouldSet(a,b)', () => {
     it(`should expect ${expected} from '${name}'`, () => {
       assert.equal(shouldSet(a, b), expected);
     });
+  });
+});
+
+
+const deep = {'foo': {'bar': {'baz': 'bat'}}};
+const simple = {'foo': 'bar'};
+
+describe('utils.getAt(a, path)', () => {
+  it('should fetch deep values', () => {
+    assert.equal(getAt(deep, ['foo', 'bar', 'baz']), 'bat')
+  });
+  it('shoul return undefined for nonexistent paths', () => {
+    assert.equal(getAt(deep, ['foo', 'asdfghhj']), undefined);
+  });
+});
+
+describe('utils.setAt(a, path)', () => {
+  it('should set root object', () => {
+    assert.deepEqual(setAt({}, [], 123), 123);
+  });
+  it('should set at shallow depth', () => {
+    assert.deepEqual(setAt({}, ['foo'], 'bar'), {'foo': 'bar'});
+  });
+  it('should maintain existing keys', () => {
+    assert.deepEqual(setAt({'foo': 'bar'}, ['baz'], 'bat'), {'foo': 'bar', 'baz': 'bat'});
+  });
+  it('should set deep through non existent keys', () => {
+    assert.deepEqual(setAt({'foo': {'bar': {}}}, ['foo', 'bar', 'baz', 'bat', 'bang'], 'boom'),
+      {'foo': {'bar': {'baz': {'bat': {'bang': 'boom'}}}}});
   });
 });
