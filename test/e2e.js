@@ -3,11 +3,11 @@ import { diff } from '../diff.js';
 
 import assert from 'assert';
 
-const simple = {'foo': 'bar'};
 const empty = {};
 const number = 123.456
 const string = 'lorem ipsum';
 const bool = true;
+const simple = {'foo': 'bar'};
 const deep = {'foo': {'bar': {'baz': 'bat'}}};
 const array = [simple, deep];
 const complex = {
@@ -32,3 +32,15 @@ describe('should produce second when applying the diff of a,b', () => {
   }
 });
 
+describe('operation with nullish primitives', () => {
+  for (let nullish of [null, undefined]) {
+    for (let type of Object.keys(inputs)) {
+      it(`should support operation between ${type} and ${nullish}`, () => {
+        assert.deepEqual(apply(inputs[type], diff(inputs[type], nullish)), nullish);
+      });
+      it(`should support operation between ${nullish} and ${type}`, () => {
+        assert.deepEqual(apply(nullish, diff(nullish, inputs[type])), inputs[type]);
+      });
+    }
+  }
+});

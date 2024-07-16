@@ -84,3 +84,24 @@ console.log(b);
 */
 ```
 
+## Nice things :)
+These are just the things I remember, it's all just nice of course :P
+
+### Noop
+The output of `diff(a, a)` is always an empty set of instructions, which is a noop.
+
+### Primitives
+The [diff](#diff) and [apply](#apply) functions both work on primitives. Meaning it can generate instructions for converting an object to a primitive and apply those instructions to get a primitive.
+
+All pairs of the following are tested together:
+- empty object
+- number
+- string
+- boolean
+- simple non empty object (e.g. `{'foo': 'bar'}`
+- deep object (e.g. `{'foo': {'bar': 'baz': 'bat'}}}`)
+- array
+- complex object (e.g. an object with multiple types as keys)
+- null
+- undefined
+
