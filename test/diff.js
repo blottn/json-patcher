@@ -25,7 +25,7 @@ describe('diff.diff(a,b)', () => {
   });
   it('should create a delete instruction for a deleted key', () => {
     assert.deepEqual(diff({'foo': 'bar'}, {}),
-      [["DEL", ["foo"]]]);
+      [["DEL", [], "foo"]]);
   });
 });
 

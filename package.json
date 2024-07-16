@@ -1,13 +1,13 @@
 {
   "name": "json-patcher",
   "version": "1.0.0",
-  "description": "2 modes.",
+  "description": "either generates diffs or applies diffs as instructions",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "test": "mocha"
   },
-  "author": "",
+  "author": "blottn",
   "license": "ISC",
   "dependencies": {
     "jsonpath": "^1.1.1"

@@ -1,9 +1,13 @@
-export const comparable = (a, b) => {
-  if ((a instanceof Object) != (b instanceof Object))
-    return false;
+export const shouldSet = (a, b) => {
   if (Array.isArray(a) != Array.isArray(b))
+    return true;
+  if ((a instanceof Object) != (b instanceof Object))
+    return true;
+  if (a instanceof Object)
     return false;
-  return a instanceof Object;
+  if (a !== b)
+    return true;
+  return false;
 }
 
-
+export const comparable = shouldSet;
