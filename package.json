@@ -1,8 +1,8 @@
 {
   "name": "json-patcher",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "either generates diffs or applies diffs as instructions",
-  "main": "index.js",
+  "main": "patcher.js",
   "type": "module",
   "scripts": {
     "test": "mocha"

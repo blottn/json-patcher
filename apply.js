@@ -13,9 +13,3 @@ export const apply = (input, instructions) => {
     return acc;
   }, input);
 }
-
-let instructions = `SET $.store {"foo":"WOW"}
-SET $.store.bar []
-SET $.store.bar.0 1.234`.split('\n').map(l => l.split(' '));
-
-// console.log(apply({}, instructions));
