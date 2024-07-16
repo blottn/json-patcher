@@ -1,41 +1,32 @@
 import assert from 'assert';
 
-import { comparable } from '../util.js';
+import { shouldSet } from '../util.js';
 
-const arrs = [[456], [123]];
-const objs = [{'foo': 'bar'}, {'a': 'b'}];
+const num_A = 123;
+const num_B = 456;
+const str_A = 'foo';
+const str_B = 'bar';
+const arr = [123];
+const obj = {'foo': 'bar'};
 
-describe('utils.comparable(a,b)', () => {
-  it('should declare number & number comparable', () => {
-    assert.equal(comparable(123, 456), true);
-  });
-  it('should declare number and equal number comparable', () => {
-    assert.equal(comparable(123, 123), false);
-  });
-  it('should declare number and equal string comparable', () => {
-    assert.equal(comparable('foobarbaz', 'foobarbaz'), false);
-  });
-  it('should declare string & string comparable', () => {
-    assert.equal(comparable("bar", "foo"), true);
-  });
+// [name, [param_A, param_B], definitely will need a set]
+let cases = [
+  ['same numbers', [num_A, num_A], false],
+  ['different numbers', [num_A, num_B], true],
+  ['same strings', [str_A, str_A], false],
+  ['different strings', [str_A, str_B], true],
+  ['any pair of objects', [obj, obj], false],
+  ['any pair of arrays', [arr, arr], false],
+  ['an array and object', [arr, obj], true], // non matching types
+  ['an array and string', [arr, str_A], true], // ditto
+  ['an object and string', [obj, str_A], true], // ditto
+];
 
-  it('should declare object & object comparable', () => {
-    assert.equal(comparable(objs[0], objs[1]), false);
-  });
 
-  it('should declare array & array comparable', () => {
-    assert.equal(comparable(arrs[0], arrs[1]), false);
-  });
-
-  it('should declare array & object NOT comparable', () => {
-    assert.equal(comparable(arrs[0], objs[0]), true);
-  });
-
-  it('should declare array & primitive NOT comparable', () => {
-    assert.equal(comparable(arrs[0], "asdf"), true);
-  });
-
-  it('should declare object & primitive NOT comparable', () => {
-    assert.equal(comparable(objs[0], "asdf"), true);
+describe('utils.shouldSet(a,b)', () => {
+  cases.map(([name, [a, b], expected]) => {
+    it(`should expect ${expected} from '${name}'`, () => {
+      assert.equal(shouldSet(a, b), expected);
+    });
   });
 });
