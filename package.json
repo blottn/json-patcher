@@ -1,6 +1,6 @@
 {
   "name": "json-patcher",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "either generates diffs or applies diffs as instructions",
   "main": "patcher.js",
   "type": "module",

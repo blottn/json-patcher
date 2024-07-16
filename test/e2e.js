@@ -1,5 +1,5 @@
 import { apply } from '../apply.js';
-import { diff, listDiff } from '../diff.js';
+import { diff } from '../diff.js';
 
 import assert from 'assert';
 
@@ -27,7 +27,7 @@ describe('should produce second when applying the diff of a,b', () => {
   for (let pair of pairs) {
     let [a, b] = clone([inputs[pair[0]], inputs[pair[1]]]);
     it(`${pair[0]} => ${pair[1]}`, () => {
-      assert.deepEqual(apply(a, listDiff(a, b)), b);
+      assert.deepEqual(apply(a, diff(a, b)), b);
     });
   }
 });

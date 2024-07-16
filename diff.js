@@ -1,4 +1,4 @@
-import { shouldSet } from './util.js';
+import { shouldSet, jsonPath } from './util.js';
 
 // Assumes both are objects
 export const diff = (a, b) => {
@@ -22,11 +22,9 @@ export const diff = (a, b) => {
   return instructions;
 }
 
-export const stringDiff = (a, b) => {
-  return listDiff(a, b).join('\n');
-}
+export const stringDiff = (a, b) =>
+  diff(a, b)
+    .map(([op, path, val]) =>
+      `${op}: ${jsonPath(path)} - ${val}`)
+    .join('\n');
 
-export const listDiff = (a, b) => {
-  let insts = diff(a, b);
-  return insts.map(([op, path, val]) => [op, `$${path.map(p => `.${p}`).join('')}`, val]);
-}

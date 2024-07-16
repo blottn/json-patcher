@@ -11,3 +11,5 @@ export const shouldSet = (a, b) => {
 }
 
 export const comparable = shouldSet;
+
+export const jsonPath = (listPath) => `$${listPath.map(p => `.${p}`).join('')}`;

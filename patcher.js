@@ -1,4 +1,4 @@
 import { apply } from './apply.js';
-import { diff, stringDiff, listDiff } from './diff.js';
+import { diff, stringDiff } from './diff.js';
 
-export { apply, diff, stringDiff, listDiff };
+export { apply, diff, stringDiff };
