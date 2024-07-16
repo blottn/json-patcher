@@ -4,9 +4,9 @@ export const shouldSet = (a, b) => {
   if ((a instanceof Object) != (b instanceof Object))
     return true;
   if (a instanceof Object)
-    return false;
+    return false; // Both are objects
   if (a !== b)
-    return true;
+    return true; // Both are primitives and are not equal
   return false;
 }
 

@@ -1,11 +1,14 @@
 import { shouldSet, jsonPath } from './util.js';
 
-// Assumes both are objects
 export const diff = (a, b) => {
   if (shouldSet(a,b))
     return [["SET", [], b]]
+
+  // Either both are objects or they are equal primitives
+  // if a is a primitive then it's the latter and we can stop
   if (!(a instanceof Object))
     return [];
+
   let instructions = []
   Object.keys(a)
     .forEach(key => {
