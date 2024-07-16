@@ -4,12 +4,12 @@ export const apply = (input, instructions) => {
   return instructions.reduce((acc, [op, path, val]) => {
     if (op === 'SET') {
       if (path === '$') {
-        return JSON.parse(val);
+        return val;
       }
-      jsonpath.value(acc, path, JSON.parse(val)); 
+      jsonpath.value(acc, path, val); 
     }
     if (op === 'DEL')
-      delete jsonpath.value(acc, path)[JSON.parse(val)];
+      delete jsonpath.value(acc, path)[val];
     return acc;
   }, input);
 }

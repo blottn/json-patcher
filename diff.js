@@ -28,5 +28,5 @@ export const stringDiff = (a, b) => {
 
 export const listDiff = (a, b) => {
   let insts = diff(a, b);
-  return insts.map(([op, path, val]) => [op, `$${path.map(p => `.${p}`).join('')}`, JSON.stringify(val)]);
+  return insts.map(([op, path, val]) => [op, `$${path.map(p => `.${p}`).join('')}`, val]);
 }
