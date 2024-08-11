@@ -14,8 +14,8 @@ export const diff = (a, b) => {
     .forEach(key => {
       if (!(key in b))
         return instructions.push(["DEL", [], key])
-      instructions = instructions.concat(diff(a[key], b[key]))
-                                 .map(([op, path, val]) => ([op, [key, ...path], val]));
+      instructions = instructions.concat(diff(a[key], b[key])
+                                 .map(([op, path, val]) => ([op, [key, ...path], val])));
     });
   Object.keys(b)
     .filter(k => !(k in a))
