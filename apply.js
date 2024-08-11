@@ -9,7 +9,7 @@ export const apply = (input, instructions) => {
       return setAt(acc, path, val);
     }
     if (op === 'DEL')
-      delete getAt(acc, path)[val];
+      delete (getAt(acc, path) ?? {})[val];
     return acc;
   }, input);
 }
